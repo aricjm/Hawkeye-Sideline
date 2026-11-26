@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#171717" />
+    <meta name="description" content="Iowa Hawkeyes scores, schedules, and game stats. Your sideline for every Hawkeye fan." />
+    <title>Hawkeye Sideline · Iowa Hawkeyes</title>
+    <link rel="icon" type="image/png" href="assets/iowa-tigerhawk-logo.png">
+    <link rel="apple-touch-icon" href="assets/iowa-tigerhawk-logo.png">
+    <link rel="preconnect" href="https://site.api.espn.com" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Hawkeye Sideline home">
+          <span class="brand-mark"><img src="./assets/Block-IOWA-GOLD-ffcd00.png" alt="Iowa Hawkeyes Tigerhawk" /></span>
+          <!-- <span class="brand-copy"><strong>HAWKEYE</strong></span> -->
+          <span class="brand-copy"><small>SIDELINE</small></span>
+        </a>
+        <div class="header-actions">
+          <span class="live-indicator" hidden><i></i> LIVE SCORES</span>
+          <button class="icon-button" id="settings-button" aria-label="Open settings" title="Settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Z"/><path d="m19.4 13.5 1.1.8-1.1 1.9-1.3-.5a7.7 7.7 0 0 1-1.6.9l-.2 1.4h-2.2l-.3-1.4a7.7 7.7 0 0 1-1.7-.1l-.9 1.1-1.9-1.1.5-1.3a7.7 7.7 0 0 1-.9-1.6l-1.4-.2v-2.2l1.4-.3a7.7 7.7 0 0 1 .1-1.7l-1.1-.9 1.1-1.9 1.3.5a7.7 7.7 0 0 1 1.6-.9l.2-1.4h2.2l.3 1.4a7.7 7.7 0 0 1 1.7.1l.9-1.1 1.9 1.1-.5 1.3a7.7 7.7 0 0 1 .9 1.6l1.4.2v2.2l-1.4.3a7.7 7.7 0 0 1-.1 1.7Z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="gold-rule"></span> IOWA HAWKEYES · GAME DAY, EVERY DAY</div>
+            <h1 id="page-title">The <em>Hawkeyes.</em><br />Your sideline.</h1>
+            <p>Every game. Every score. All in one place.</p>
+          </div>
+          <div class="hero-ball" aria-hidden="true"><img src="./assets/hawk-transparent.png" alt="" /></div>
+          <div class="hero-grain" aria-hidden="true"></div>
+        </section>
+
+        <section class="scoreboard-section" aria-label="Hawkeyes scoreboard">
+          <div class="section-heading">
+            <div><div class="eyebrow"><span class="gold-rule"></span> THE SCOREBOARD</div><h2>Game day <span>central</span></h2></div>
+            <div class="score-controls"><button class="upcoming-button" id="upcoming-button" type="button" hidden>All upcoming</button><label class="date-control"><span class="sr-only">Select game date</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13H4V6a1 1 0 0 1 1-1Z"/></svg><input id="game-date" type="date" /></label></div>
+          </div>
+
+          <div class="team-pills" role="group" aria-label="Filter games by team">
+            <button class="team-pill active" type="button" data-league="college-football" aria-pressed="true"><svg class="team-icon football-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.2 2.8c-6.1-.8-12.2 1.1-16.1 5S2 17.8 2.8 21.2c6.1.8 12.2-1.1 16.1-5s4.2-9.9 2.3-13.4Z"/><path d="m8.2 15.8 7.6-7.6m-5.4.6 4.8 4.8m-7.1-2.5 4.8 4.8"/></svg> NCAAF</button>
+            <button class="team-pill active" type="button" data-league="mens-college-basketball" aria-pressed="true"><svg class="team-icon basketball-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/><path d="M6 4.5c2.5 3 2.5 12 0 15M18 4.5c-2.5 3-2.5 12 0 15"/></svg> NCAAM</button>
+            <button class="team-pill active" type="button" data-league="womens-college-basketball" aria-pressed="true"><svg class="team-icon basketball-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/><path d="M6 4.5c2.5 3 2.5 12 0 15M18 4.5c-2.5 3-2.5 12 0 15"/></svg> NCAAW</button>
+          </div>
+
+          <div class="refresh-note" id="refresh-note" aria-live="polite"><span class="refresh-spinner"></span><span id="refresh-message">Pull down to refresh scores</span></div>
+          <div class="game-list" id="game-list" aria-live="polite" aria-busy="true">
+            <div class="loading-card"><span class="refresh-spinner"></span><span>Finding the Hawkeyes’ games…</span></div>
+          </div>
+          <p class="data-note">Scores and stats from ESPN · Updated <span id="updated-time">—</span></p>
+        </section>
+      </main>
+      <footer><span class="footer-mark">H</span><span>MADE FOR HAWKEYE FANS</span><span class="footer-line"></span><span class="footer-cheer">GO HAWKS <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 14 1.1 3.1L23 18l-2.9 1L19 22l-1-3-3-1 3-1 1-3Z"/></svg></span></footer>
+    </div>
+
+    <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+      <form method="dialog" class="dialog-top"><div><div class="eyebrow"><span class="gold-rule"></span> YOUR PREFERENCES</div><h2 id="settings-title">Settings</h2></div><button class="icon-button close-button" aria-label="Close settings">×</button></form>
+      <div class="setting-row"><div><strong>Time zone</strong><p>Show game times in your local zone.</p></div><select id="timezone-select" aria-label="Time zone"><option value="ET">Eastern (ET)</option><option value="CT">Central (CT)</option><option value="MT">Mountain (MT)</option><option value="PT">Pacific (PT)</option></select></div>
+      <p class="dialog-foot">Your choice is saved on this device.</p>
+    </dialog>
+    <div class="pull-indicator" id="pull-indicator" aria-hidden="true"><span class="refresh-spinner"></span> Refreshing scores</div>
+  </body>
+</html>
